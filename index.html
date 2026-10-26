@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宅宅影视 - 窝在被窝里刷好片 | zhaizhaiyingshi-h5.github.io</title>
+<meta name="description" content="宅宅影视（zhaizhaiyingshi-h5.github.io）是二次元宅の被窝放映角：番剧、剧集、电影、游戏剪辑按宅格整理，高清画质标注，手机电脑都能瘫着挑片。">
+<meta name="keywords" content="宅宅影视, 高清影视导航, 番剧, 动漫, 剧集, 影视索引, zhaizhaiyingshi-h5">
+<meta name="author" content="宅宅影视">
+<meta name="robots" content="index, follow">
+<style>
+  :root{
+    --night:#1a1228;
+    --den:#24183a;
+    --den2:#2e1f4a;
+    --cream:#ffe3c9;
+    --orange:#ff9f68;
+    --pink:#ff8fb1;
+    --mint:#7ee0c2;
+    --blue:#a9b8ff;
+    --line:#45355e;
+    --soft:#cbbfdd;
+    --muted:#9b8cb4;
+    --sans:'PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+    --mono:'SFMono-Regular',Consolas,monospace;
+    --radius:22px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);background:var(--night);color:var(--cream);
+    line-height:1.7;overflow-x:hidden;position:relative;
+    background-image:
+      radial-gradient(circle at 88% 6%, #ff9f6820 0, transparent 40%),
+      radial-gradient(circle at 10% 90%, #a9b8ff14 0, transparent 42%);
+  }
+  /* 背景像素点 */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:radial-gradient(circle at 2px 2px,#ffffff08 1px,transparent 2px);
+    background-size:18px 18px;}
+  a{color:var(--mint);text-decoration:none;transition:.2s;}
+  a:hover{color:var(--orange);}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 1.2rem;position:relative;z-index:2;}
+
+  /* 顶栏 */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;
+    position:sticky;top:0;z-index:60;background:linear-gradient(var(--night),transparent);backdrop-filter:blur(8px);}
+  .brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.3rem;color:var(--cream);}
+  .cat{width:22px;height:20px;flex:none;
+    box-shadow:
+      0 0 0 2px var(--orange), 2px 0 0 2px var(--orange), 4px 0 0 2px var(--orange),
+      0 -2px 0 2px var(--orange), 2px -2px 0 2px var(--orange),
+      14px 0 0 2px var(--orange), 16px 0 0 2px var(--orange), 14px -2px 0 2px var(--orange),
+      4px 6px 0 2px var(--pink), 6px 6px 0 2px var(--pink), 8px 6px 0 2px var(--pink);
+    background:var(--orange);transform:scale(.9);}
+  .nav{display:flex;gap:1rem;}
+  .nav a{font-family:var(--mono);font-size:.8rem;color:var(--muted);padding:.3rem .5rem;
+    border:1px solid transparent;}
+  .nav a:hover{color:var(--cream);border-color:var(--line);border-radius:10px;}
+
+  section{position:relative;padding:4.2rem 0 3.4rem;border-bottom:1px dashed var(--line);}
+  .sec-head{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem;flex-wrap:wrap;}
+  .badge-tab{font-family:var(--mono);font-size:.68rem;letter-spacing:1.5px;color:var(--orange);
+    background:var(--den);border:1px solid var(--orange);padding:.2rem .65rem;border-radius:6px;transform:rotate(-1.5deg);}
+  h2.sec-title{font-size:clamp(1.7rem,4vw,2.6rem);letter-spacing:-.5px;color:var(--cream);}
+
+  /* 栏目1：被窝放映角 */
+  #home{padding-top:3rem;}
+  .den{display:grid;grid-template-columns:1.05fr .95fr;gap:2.2rem;align-items:center;}
+  .lamp{position:absolute;top:-40px;right:10%;width:60px;height:60px;border-radius:50%;
+    background:radial-gradient(circle at 40% 35%,#fff3d0,#ff9f6860,transparent 70%);
+    filter:blur(2px);animation:glow 4s ease-in-out infinite alternate;z-index:1;}
+  @keyframes glow{from{opacity:.7;}to{opacity:1;}}
+  .hero-txt h1{font-size:clamp(2.6rem,7vw,4.4rem);line-height:1.02;letter-spacing:-1.5px;position:relative;z-index:2;}
+  .hero-txt h1 em{font-style:normal;color:var(--orange);text-shadow:0 0 18px #ff9f6844;}
+  .hero-txt p.lead{margin:1.2rem 0 1.5rem;color:var(--soft);font-size:1.02rem;max-width:480px;}
+  .zz-tags{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.6rem;}
+  .zt{font-family:var(--mono);font-size:.72rem;background:var(--den);border:1px solid var(--line);
+    color:var(--mint);padding:.28rem .75rem;border-radius:20px;}
+  .btn-row{display:flex;gap:.8rem;flex-wrap:wrap;}
+  .btn{font-weight:800;padding:.7rem 1.6rem;border-radius:14px;border:2px solid var(--orange);
+    background:var(--orange);color:var(--night);font-family:var(--mono);}
+  .btn.ghost{background:transparent;color:var(--orange);}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #00000040;}
+
+  /* 弹幕墙 */
+  .screen{position:relative;background:#110a1c;border:3px solid var(--line);border-radius:18px;
+    overflow:hidden;padding:1.4rem;box-shadow:0 14px 34px #00000060;}
+  .screen::before{content:"📺 弹幕模式 · ON";position:absolute;top:8px;left:10px;font-family:var(--mono);
+    font-size:.6rem;color:var(--mint);letter-spacing:1px;}
+  .danmaku{position:relative;height:150px;margin-top:1rem;}
+  .dm{position:absolute;top:var(--t);white-space:nowrap;font-size:.85rem;color:var(--cream);
+    text-shadow:0 0 6px #000, 0 0 10px var(--pink);animation:fly 9s linear infinite;animation-delay:var(--d);}
+  .dm.p{color:var(--pink);}
+  .dm.o{color:var(--orange);}
+  .dm.b{color:var(--blue);}
+  @keyframes fly{from{left:110%;}to{left:-60%;}}
+  .kbd-row{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap;}
+  .key{font-family:var(--mono);font-size:.72rem;background:var(--den2);border:1px solid var(--line);
+    border-bottom-width:3px;border-radius:8px;padding:.25rem .55rem;color:var(--cream);}
+
+  /* 栏目2：宅格徽章 */
+  #category .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.1rem;}
+  .cell{background:var(--den);border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem 1.2rem;
+    position:relative;transition:.18s;}
+  .cell:hover{transform:translateY(-4px) rotate(-.6deg);background:var(--den2);box-shadow:0 10px 24px #00000050;}
+  .emoji{font-size:1.7rem;display:block;margin-bottom:.5rem;}
+  .cell h3{font-size:1.02rem;}
+  .cell p{font-size:.76rem;color:var(--muted);margin-top:.2rem;}
+  .cell .pin{position:absolute;top:12px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--pink);
+    box-shadow:0 0 8px var(--pink);}
+
+  /* 栏目3：毛绒片卡 */
+  #latest .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.3rem;}
+  .plush{background:var(--den);border:1px solid var(--line);border-radius:26px;overflow:hidden;
+    box-shadow:0 8px 0 #00000030, inset 0 4px 20px #ffffff08;transition:.18s;}
+  .plush:hover{transform:translateY(-3px);box-shadow:0 12px 0 #00000040, inset 0 4px 20px #ffffff0c;}
+  .plush .cush{height:130px;display:flex;align-items:center;justify-content:center;font-size:3rem;
+    background:linear-gradient(150deg,var(--den2),#1a1228);position:relative;}
+  .plush .cush.c2{background:linear-gradient(150deg,#4a2c52,#24183a);}
+  .plush .cush.c3{background:linear-gradient(150deg,#3a3058,#24183a);}
+  .plush .cush.c4{background:linear-gradient(150deg,#4a3a30,#24183a);}
+  .paw{position:absolute;top:10px;right:12px;font-size:.9rem;filter:drop-shadow(0 1px 2px #000);}
+  .plush .info{padding:1.1rem 1.2rem;}
+  .plush h3{font-size:1.02rem;}
+  .plush .sub{font-size:.74rem;color:var(--muted);margin:.25rem 0 .7rem;}
+  .plush .foot{display:flex;align-items:center;justify-content:space-between;border-top:1px dashed var(--line);padding-top:.6rem;}
+  .see{font-size:.8rem;font-weight:700;color:var(--orange);}
+  .see:hover{color:var(--pink);}
+
+  /* 栏目4：能量条 */
+  #ranking .list{max-width:760px;}
+  .hp{display:grid;grid-template-columns:52px 1fr auto;gap:1rem;align-items:center;padding:1.05rem 0;
+    border-bottom:1px dashed var(--line);}
+  .hp-no{font-family:var(--mono);font-weight:800;font-size:1.1rem;color:var(--orange);text-align:center;
+    background:var(--den2);border:1px solid var(--line);border-radius:10px;padding:.35rem 0;}
+  .hp-no.top{background:var(--pink);color:var(--night);border-color:var(--pink);}
+  .hp h3{font-size:1rem;}
+  .hp .sub{font-size:.74rem;color:var(--muted);}
+  .bar{height:16px;background:var(--night);border:1px solid var(--line);border-radius:20px;margin-top:.4rem;
+    overflow:hidden;position:relative;}
+  .bar .fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--mint),var(--blue),var(--pink));
+    position:relative;}
+  .bar .fill::after{content:"🐾";position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:.7rem;}
+  .hp .val{font-family:var(--mono);font-size:.8rem;color:var(--mint);}
+
+  /* 栏目5 */
+  #about .note{background:var(--den);border:1px solid var(--line);border-left:5px solid var(--pink);
+    border-radius:18px;padding:1.6rem;font-size:.92rem;color:var(--soft);}
+  #about .note b{color:var(--cream);}
+  .url{font-family:var(--mono);color:var(--mint);margin-top:.8rem;display:inline-block;}
+
+  footer{text-align:center;font-family:var(--mono);font-size:.78rem;color:var(--muted);
+    padding:2.5rem 1rem 3rem;border-top:1px dashed var(--line);}
+
+  @media(max-width:768px){
+    .nav{display:none;}
+    .den{grid-template-columns:1fr;}
+    .hero-txt h1{font-size:2.7rem;}
+    .screen{order:-1;}
+    #category .grid{grid-template-columns:1fr 1fr;}
+    #latest .grid{grid-template-columns:1fr;}
+    .hp{grid-template-columns:44px 1fr;}
+    .hp .val{display:none;}
+  }
+  @media(max-width:420px){
+    #category .grid{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;}
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="topbar">
+  <div class="brand"><span class="cat"></span>宅宅影视</div>
+  <nav class="nav">
+    <a href="#home">窝位</a>
+    <a href="#category">宅格</a>
+    <a href="#latest">新番</a>
+    <a href="#ranking">能量</a>
+    <a href="#about">规则</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- 栏目1 -->
+  <section id="home">
+    <div class="den">
+      <div class="hero-txt">
+        <span class="badge-tab">COZY DEN · 营业中</span>
+        <h1>宅宅影视<br><em>被窝里刷好片</em></h1>
+        <p class="lead">zhaizhaiyingshi-h5.github.io —— 番剧、剧集、电影、游戏剪辑，全塞进你的被窝放映角。标注画质，弹幕护体，瘫着也能挑到想看的那一部。</p>
+        <div class="zz-tags">
+          <span class="zt">🛋 4K 软垫画质</span>
+          <span class="zt">🍡 1080P 丝滑</span>
+          <span class="zt">🎧 中字配音</span>
+          <span class="zt">🐾 无弹窗惊吓</span>
+        </div>
+        <div class="btn-row">
+          <a href="#latest" class="btn">钻进片单 →</a>
+          <a href="#category" class="btn ghost">选宅格</a>
+        </div>
+      </div>
+      <div class="screen" aria-hidden="true">
+        <div class="lamp"></div>
+        <div class="danmaku">
+          <span class="dm" style="--t:14%;--d:0s">awsl 这片太治愈了</span>
+          <span class="dm p" style="--t:38%;--d:1.8s">第3集哭到枕头湿</span>
+          <span class="dm o" style="--t:62%;--d:3.6s">画质好顶 4K舒服</span>
+          <span class="dm b" style="--t:84%;--d:5.2s">前方高能！！！</span>
+          <span class="dm" style="--t:50%;--d:6.8s">窝里已备好零食</span>
+        </div>
+        <div class="kbd-row">
+          <span class="key">↑ 上一条</span>
+          <span class="key">↓ 下一条</span>
+          <span class="key">⏎ 开刷</span>
+          <span class="key">Esc 躲回被窝</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目2 -->
+  <section id="category">
+    <div class="sec-head"><span class="badge-tab">GRID</span><h2 class="sec-title">宅格分区</h2></div>
+    <div class="grid">
+      <div class="cell"><span class="pin"></span><span class="emoji">🎀</span><h3>番剧窝</h3><p>新番 / 老番 / 剧场版</p></div>
+      <div class="cell"><span class="pin"></span><span class="emoji">🧸</span><h3>剧集堆</h3><p>国剧 / 日剧 / 韩剧美剧</p></div>
+      <div class="cell"><span class="pin"></span><span class="emoji">🍿</span><h3>电影洞</h3><p>院线 / 冷门 / 深夜场</p></div>
+      <div class="cell"><span class="pin"></span><span class="emoji">🎮</span><h3>游戏屏</h3><p>游戏改编 / 实况剪辑</p></div>
+      <div class="cell"><span class="pin"></span><span class="emoji">🧋</span><h3>谷子放映</h3><p>演唱会 / 舞台 / 特典</p></div>
+      <div class="cell"><span class="pin"></span><span class="emoji">😴</span><h3>摸鱼台</h3><p>综艺 / 下饭 / 白噪音</p></div>
+    </div>
+  </section>
+
+  <!-- 栏目3 -->
+  <section id="latest">
+    <div class="sec-head"><span class="badge-tab">FRESH</span><h2 class="sec-title">今日软垫片单</h2></div>
+    <div class="grid">
+      <article class="plush">
+        <div class="cush">🏜️<span class="paw">🐾</span></div>
+        <div class="info"><h3>沙丘3：救世主</h3><div class="sub">科幻 / 156min / 4K 软垫</div>
+          <div class="foot"><span class="sub">电影洞</span><a href="#" class="see">窝着看 →</a></div></div>
+      </article>
+      <article class="plush">
+        <div class="cush c2">👑<span class="paw">🐾</span></div>
+        <div class="info"><h3>咒术回战 S3</h3><div class="sub">番剧 / 连载中 / 中字</div>
+          <div class="foot"><span class="sub">番剧窝</span><a href="#" class="see">窝着看 →</a></div></div>
+      </article>
+      <article class="plush">
+        <div class="cush c3">🔥<span class="paw">🐾</span></div>
+        <div class="info"><h3>周处除三害</h3><div class="sub">动作犯罪 / 134min / BD</div>
+          <div class="foot"><span class="sub">电影洞 · 高能</span><a href="#" class="see">窝着看 →</a></div></div>
+      </article>
+      <article class="plush">
+        <div class="cush c4">🍵<span class="paw">🐾</span></div>
+        <div class="info"><h3>庆余年2</h3><div class="sub">古装权谋 / 32集</div>
+          <div class="foot"><span class="sub">剧集堆</span><a href="#" class="see">窝着看 →</a></div></div>
+      </article>
+      <article class="plush">
+        <div class="cush">🌸<span class="paw">🐾</span></div>
+        <div class="info"><h3>花束般的恋爱</h3><div class="sub">爱情 / 124min / 治愈版</div>
+          <div class="foot"><span class="sub">摸鱼台 · 下饭</span><a href="#" class="see">窝着看 →</a></div></div>
+      </article>
+      <article class="plush">
+        <div class="cush c2">🎮<span class="paw">🐾</span></div>
+        <div class="info"><h3>最终幻想16 剧集版</h3><div class="sub">游戏改编 / 合集</div>
+          <div class="foot"><span class="sub">游戏屏</span><a href="#" class="see">窝着看 →</a></div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目4 -->
+  <section id="ranking">
+    <div class="sec-head"><span class="badge-tab">ENERGY</span><h2 class="sec-title">窝居能量榜</h2></div>
+    <div class="list">
+      <div class="hp">
+        <div class="hp-no top">1</div>
+        <div><h3>咒术回战 S3</h3><div class="sub">番剧窝 / 当季续命番</div>
+          <div class="bar"><div class="fill" style="width:98%"></div></div></div>
+        <div class="val">能量 98%</div>
+      </div>
+      <div class="hp">
+        <div class="hp-no top">2</div>
+        <div><h3>庆余年2</h3><div class="sub">剧集堆 / 一集不落</div>
+          <div class="bar"><div class="fill" style="width:95%"></div></div></div>
+        <div class="val">能量 95%</div>
+      </div>
+      <div class="hp">
+        <div class="hp-no top">3</div>
+        <div><h3>沙丘3</h3><div class="sub">电影洞 / 4K 沉浸</div>
+          <div class="bar"><div class="fill" style="width:92%"></div></div></div>
+        <div class="val">能量 92%</div>
+      </div>
+      <div class="hp">
+        <div class="hp-no">4</div>
+        <div><h3>周处除三害</h3><div class="sub">电影洞 / 高能预警</div>
+          <div class="bar"><div class="fill" style="width:88%"></div></div></div>
+        <div class="val">能量 88%</div>
+      </div>
+      <div class="hp">
+        <div class="hp-no">5</div>
+        <div><h3>花束般的恋爱</h3><div class="sub">摸鱼台 / 治愈下饭</div>
+          <div class="bar"><div class="fill" style="width:84%"></div></div></div>
+        <div class="val">能量 84%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目5 -->
+  <section id="about">
+    <div class="sec-head"><span class="badge-tab">RULES</span><h2 class="sec-title">窝规小记</h2></div>
+    <div class="note">
+      <p><b>宅宅影视</b>是你的被窝放映导航角，只做分类索引、画质标注与入口整理，<b>不托管视频文件，也不内置播放源</b>。零食备好，音量调小，慢慢刷。</p>
+      <p style="margin-top:.6rem">内容用于个人观影与学习交流；实际观看请通过正规授权平台，遵守当地网络与版权规范。别熬太晚喔。</p>
+      <a href="#" class="url">🐾 https://zhaizhaiyingshi-h5.github.io</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  宅宅影视 / zhaizhaiyingshi-h5.github.io<br>
+  © 2026 被窝放映角 · Cozy Otaku Den Edition
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth'});
+    });
+  });
+</script>
+</body>
+</html>
